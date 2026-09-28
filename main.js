@@ -58,16 +58,13 @@ function finishIntro() {
 }
 document.getElementById('skip-intro').addEventListener('click',finishIntro);
 setTimeout(finishIntro, reduced ? 100 : 2550);
-// La fotografía se desplaza ligeramente con el puntero; el halo acompaña el movimiento.
-const halo = document.querySelector('.cursor-halo');
+// Profundidad muy suave ligada al scroll. No hay interacción con el puntero.
 const hero = document.querySelector('.hero');
-if (!reduced) addEventListener('pointermove', e => {
- if (halo) {halo.style.left=e.clientX+'px';halo.style.top=e.clientY+'px';halo.style.opacity='1';}
- if (hero && e.clientY < innerHeight * 1.3) {
-  hero.style.setProperty('--photo-x', `${(e.clientX/innerWidth-.5)*20}px`);
-  hero.style.setProperty('--photo-y', `${(e.clientY/innerHeight-.5)*14}px`);
- }
-},{passive:true});
+const updateHeroDepth = () => {
+ if (!hero || reduced) return;
+ hero.style.setProperty('--photo-scroll', `${Math.min(65, scrollY * .12)}px`);
+};
+addEventListener('scroll', updateHeroDepth, {passive:true});updateHeroDepth();
 const chapterCount=document.getElementById('chapter-count');
 const art=document.querySelector('.work-intro-art');
 const chapters=[document.querySelector('.hero'),document.querySelector('#metodo'),document.querySelector('#trabajos'),document.querySelector('#servicios')];
