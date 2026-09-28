@@ -27,3 +27,7 @@ Para verlo en local, abre `index.html` en el navegador. Si prefieres un servidor
 ## Ajuste de miniaturas
 
 Los cuatro proyectos comparten un visor de 1440 píxeles adaptado al ancho disponible. El proyecto 4 usa exactamente el mismo encuadre y escala. La carga de la URL incrustada sigue dependiendo de la configuración del sitio de origen.
+
+## Nueva dirección visual
+
+La versión inmersiva incorpora fondo gráfico animado y sensible al puntero, capítulos de scroll, capas con profundidad, entrada con transición y marcos interactivos. El movimiento se reduce automáticamente si el visitante lo solicita en su dispositivo. Se inspira en la narrativa visual de los cuatro estudios indicados, sin reutilizar sus textos ni recursos.
