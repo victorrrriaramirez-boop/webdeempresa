@@ -28,7 +28,9 @@ addEventListener('resize', updateScroll);updateScroll();
 // Escala la web real a cada marco y permite explorarla sin bloquear el scroll principal.
 const previewWindows = [...document.querySelectorAll('.preview-window')];
 const resizePreviews = () => previewWindows.forEach(win => {
- const scale = win.clientWidth / 1440;
+ const viewportWidth = innerWidth <= 560 ? 390 : 1440;
+ win.style.setProperty('--preview-width', `${viewportWidth}px`);
+ const scale = win.clientWidth / viewportWidth;
  win.style.setProperty('--preview-scale', String(scale));
  win.querySelector('iframe').style.height = `${Math.max(900, Math.ceil(win.clientHeight / Math.max(scale,.1)))}px`;
 });
@@ -43,3 +45,16 @@ previewWindows.forEach(win => {
   win.querySelector('iframe').tabIndex = active ? 0 : -1;
  });
 });
+
+// Transición inicial: se omite al tocar el botón y respeta movimiento reducido.
+const intro = document.getElementById('intro');
+let introFinished = false;
+function finishIntro() {
+ if (introFinished) return;
+ introFinished = true;
+ document.body.classList.remove('intro-open');
+ intro.classList.add('is-leaving');
+ setTimeout(() => {intro.classList.add('is-done');intro.setAttribute('aria-hidden','true');}, reduced ? 0 : 1000);
+}
+document.getElementById('skip-intro').addEventListener('click',finishIntro);
+setTimeout(finishIntro, reduced ? 100 : 2550);

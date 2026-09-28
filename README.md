@@ -1,6 +1,6 @@
 # Portfolio creativo
 
-Web estática en HTML, CSS y JavaScript. No necesita instalar dependencias ni configurar un servidor. Incluye diseño adaptable, cuatro miniaturas interactivas que cargan las webs originales, transiciones asociadas al desplazamiento, SEO básico y soporte para movimiento reducido.
+Web estática en HTML, CSS y JavaScript. No necesita instalar dependencias ni configurar un servidor. Incluye diseño adaptable, cuatro miniaturas interactivas que cargan las webs originales, transición de entrada con botón para saltarla y transiciones asociadas al desplazamiento, SEO básico y soporte para movimiento reducido.
 
 ## Publicar en GitHub y Vercel
 
@@ -23,3 +23,7 @@ Para verlo en local, abre `index.html` en el navegador. Si prefieres un servidor
 - `styles.css`: diseño y marcos interactivos.
 - `main.js`: menú, entradas y efectos de desplazamiento.
 - `favicon.svg`: icono.
+
+## Ajuste de miniaturas
+
+Los cuatro proyectos comparten un visor de 1440 píxeles adaptado al ancho disponible. El proyecto 4 usa exactamente el mismo encuadre y escala. La carga de la URL incrustada sigue dependiendo de la configuración del sitio de origen.
