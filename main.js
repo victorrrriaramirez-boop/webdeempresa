@@ -24,3 +24,22 @@ function updateScroll() {
 }
 addEventListener('scroll', () => {if (!ticking) {requestAnimationFrame(updateScroll);ticking=true;}}, {passive:true});
 addEventListener('resize', updateScroll);updateScroll();
+
+// Escala la web real a cada marco y permite explorarla sin bloquear el scroll principal.
+const previewWindows = [...document.querySelectorAll('.preview-window')];
+const resizePreviews = () => previewWindows.forEach(win => {
+ const scale = win.clientWidth / 1440;
+ win.style.setProperty('--preview-scale', String(scale));
+ win.querySelector('iframe').style.height = `${Math.max(900, Math.ceil(win.clientHeight / Math.max(scale,.1)))}px`;
+});
+if ('ResizeObserver' in window) {const ro = new ResizeObserver(resizePreviews);previewWindows.forEach(win => ro.observe(win));}
+addEventListener('resize', resizePreviews);resizePreviews();
+previewWindows.forEach(win => {
+ const button = win.querySelector('.preview-toggle');
+ button.addEventListener('click', () => {
+  const active = win.classList.toggle('is-active');
+  button.setAttribute('aria-pressed', String(active));
+  button.textContent = active ? 'Salir de la vista ✕' : 'Explorar aquí ↗';
+  win.querySelector('iframe').tabIndex = active ? 0 : -1;
+ });
+});
