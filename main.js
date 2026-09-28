@@ -28,7 +28,7 @@ addEventListener('resize', updateScroll);updateScroll();
 // Escala la web real a cada marco y permite explorarla sin bloquear el scroll principal.
 const previewWindows = [...document.querySelectorAll('.preview-window')];
 const resizePreviews = () => previewWindows.forEach(win => {
- const viewportWidth = innerWidth <= 560 ? 390 : 1440;
+ const viewportWidth = innerWidth <= 850 ? Math.max(390, Math.min(innerWidth, 850)) : 1440;
  win.style.setProperty('--preview-width', `${viewportWidth}px`);
  const scale = win.clientWidth / viewportWidth;
  win.style.setProperty('--preview-scale', String(scale));

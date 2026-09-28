@@ -33,3 +33,7 @@ Los cuatro proyectos comparten un visor de 1440 píxeles adaptado al ancho dispo
 La versión inmersiva incorpora fotografía editorial de un equipo creativo con animación automática sutil, capítulos de scroll, capas con profundidad, entrada con transición y marcos interactivos. El movimiento se reduce automáticamente si el visitante lo solicita en su dispositivo. Se inspira en la narrativa visual de los cuatro estudios indicados, sin reutilizar sus textos ni recursos.
 
 La portada utiliza `assets/hero-marketing.webp`, incluida en el proyecto, con movimiento lento y tarjetas temáticas de estrategia, diseño web y SEO. No utiliza seguimiento del puntero. La fotografía es una imagen creada para este diseño y representa una escena ilustrativa; no debe presentarse como una foto del equipo real de la empresa.
+
+## Móvil
+
+La portada, la intro, las cuatro miniaturas, los textos, la navegación y el pie se adaptan a pantallas pequeñas. Los visores usan una anchura virtual móvil o de tableta para mostrar las versiones responsive de cada proyecto. Las tarjetas de la portada desaparecen en móvil para dejar visible la foto y el mensaje.
