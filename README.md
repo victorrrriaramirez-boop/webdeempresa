@@ -30,4 +30,6 @@ Los cuatro proyectos comparten un visor de 1440 píxeles adaptado al ancho dispo
 
 ## Nueva dirección visual
 
-La versión inmersiva incorpora fondo gráfico animado y sensible al puntero, capítulos de scroll, capas con profundidad, entrada con transición y marcos interactivos. El movimiento se reduce automáticamente si el visitante lo solicita en su dispositivo. Se inspira en la narrativa visual de los cuatro estudios indicados, sin reutilizar sus textos ni recursos.
+La versión inmersiva incorpora fotografía editorial de un equipo creativo con movimiento sutil al puntero, capítulos de scroll, capas con profundidad, entrada con transición y marcos interactivos. El movimiento se reduce automáticamente si el visitante lo solicita en su dispositivo. Se inspira en la narrativa visual de los cuatro estudios indicados, sin reutilizar sus textos ni recursos.
+
+La portada utiliza `assets/hero-marketing.webp`, incluida en el proyecto. La fotografía es una imagen creada para este diseño y representa una escena ilustrativa; no debe presentarse como una foto del equipo real de la empresa.

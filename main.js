@@ -58,31 +58,16 @@ function finishIntro() {
 }
 document.getElementById('skip-intro').addEventListener('click',finishIntro);
 setTimeout(finishIntro, reduced ? 100 : 2550);
-// Fondo de partículas abstractas: responde al puntero y a la posición de scroll.
-const canvas = document.querySelector('.hero-canvas');
-const ctx = canvas?.getContext('2d');
+// La fotografía se desplaza ligeramente con el puntero; el halo acompaña el movimiento.
 const halo = document.querySelector('.cursor-halo');
-let px = .5, py = .5, particles = [], animationFrame;
-function sizeCanvas() {
- if (!canvas || !ctx) return;
- const rect=canvas.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2);
- canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);
- ctx.setTransform(dpr,0,0,dpr,0,0);
- particles=Array.from({length:innerWidth<600?22:45},(_,i)=>({x:(i*.61803398875%1)*rect.width,y:(i*.41421356237%1)*rect.height,r:2+(i%6),phase:i*.71}));
-}
-function drawCanvas(time=0) {
- if (!ctx || !canvas) return;
- const width=canvas.clientWidth,height=canvas.clientHeight;
- ctx.clearRect(0,0,width,height);
- const g=ctx.createRadialGradient(width*(.62+(px-.5)*.15),height*(.5+(py-.5)*.1),10,width*.58,height*.48,width*.7);
- g.addColorStop(0,'#763ee1');g.addColorStop(.42,'#342459');g.addColorStop(1,'#100f1a');ctx.fillStyle=g;ctx.fillRect(0,0,width,height);
- ctx.strokeStyle='#d7ff3733';ctx.lineWidth=1;
- for(let j=0;j<4;j++){ctx.beginPath();const radius=width*(.12+j*.07);ctx.ellipse(width*(.65+(px-.5)*.07),height*(.45+(py-.5)*.05),radius,radius*.72,-.35,0,Math.PI*2);ctx.stroke();}
- particles.forEach(p=>{const x=p.x+Math.sin(time*.0003+p.phase)*16+(px-.5)*14,y=p.y+Math.cos(time*.0004+p.phase)*14+(py-.5)*10;ctx.beginPath();ctx.arc(x,y,p.r,0,Math.PI*2);ctx.fillStyle=p.r>5?'#d7ff3780':'#ffffffa0';ctx.fill();});
- if(!reduced) animationFrame=requestAnimationFrame(drawCanvas);
-}
-sizeCanvas();drawCanvas();addEventListener('resize',sizeCanvas);
-if(!reduced) addEventListener('pointermove',e=>{px=e.clientX/innerWidth;py=e.clientY/innerHeight;if(halo){halo.style.left=e.clientX+'px';halo.style.top=e.clientY+'px';halo.style.opacity='1';}},{passive:true});
+const hero = document.querySelector('.hero');
+if (!reduced) addEventListener('pointermove', e => {
+ if (halo) {halo.style.left=e.clientX+'px';halo.style.top=e.clientY+'px';halo.style.opacity='1';}
+ if (hero && e.clientY < innerHeight * 1.3) {
+  hero.style.setProperty('--photo-x', `${(e.clientX/innerWidth-.5)*20}px`);
+  hero.style.setProperty('--photo-y', `${(e.clientY/innerHeight-.5)*14}px`);
+ }
+},{passive:true});
 const chapterCount=document.getElementById('chapter-count');
 const art=document.querySelector('.work-intro-art');
 const chapters=[document.querySelector('.hero'),document.querySelector('#metodo'),document.querySelector('#trabajos'),document.querySelector('#servicios')];
