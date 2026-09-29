@@ -29,6 +29,7 @@ if (gallery) {
   if (card && counter) counter.textContent = String(cards.indexOf(card) + 1).padStart(2, '0');
  };
  cards.forEach(card => {
+  card.addEventListener('pointerenter', e => {if (e.pointerType === 'mouse' && navTargetIndex === null) setActive(card);});
   card.addEventListener('click', e => { if (!e.target.closest('button,a')) openProject(card); });
  });
  gallery.addEventListener('wheel', e => {
@@ -40,9 +41,17 @@ if (gallery) {
   }
  }, {passive:false});
  gallery.addEventListener('touchstart', () => {navTargetIndex = null;}, {passive:true});
- const focusLine = () => gallery.getBoundingClientRect().left + (innerWidth <= 700
-  ? gallery.clientWidth / 2
-  : gallery.clientWidth * .04 + cards[0].offsetWidth / 2);
+ const focusMetrics = () => {
+  const box = gallery.getBoundingClientRect();
+  const start = gallery.clientWidth * .04 + cards[0].offsetWidth / 2;
+  const end = gallery.clientWidth * .96 - cards[cards.length - 1].offsetWidth / 2;
+  const max = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+  return {box, start, end, max};
+ };
+ const focusLine = () => {
+  const {box,start,end,max} = focusMetrics();
+  return box.left + (innerWidth <= 700 ? gallery.clientWidth / 2 : start + (end - start) * (max ? gallery.scrollLeft / max : 0));
+ };
  function moveProject(direction) {
   const selectedIndex = cards.indexOf(gallery.querySelector('.is-selected'));
   const current = navTargetIndex ?? (selectedIndex >= 0 ? selectedIndex : Math.max(0, Number(counter.textContent) - 1));
@@ -53,7 +62,11 @@ if (gallery) {
    navTargetIndex = nextIndex;
    setActive(null);
    const rect = next.getBoundingClientRect();
-   const left = gallery.scrollLeft + rect.left + rect.width / 2 - focusLine();
+   const {box,start,end,max} = focusMetrics();
+   const contentCenter = gallery.scrollLeft + rect.left + rect.width / 2 - box.left;
+   const left = innerWidth <= 700
+    ? contentCenter - gallery.clientWidth / 2
+    : (contentCenter - start) / (1 + (max ? (end - start) / max : 0));
    gallery.scrollTo({left,behavior:reduced ? 'instant' : 'smooth'});
    if (reduced) requestAnimationFrame(updateGalleryDepth);
   }
