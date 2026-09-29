@@ -1,6 +1,6 @@
 # Portfolio creativo
 
-Web estática en HTML, CSS y JavaScript. No necesita instalar dependencias ni configurar un servidor. Incluye diseño adaptable, cuatro miniaturas interactivas que cargan las webs originales, transición de entrada con botón para saltarla y transiciones asociadas al desplazamiento, SEO básico y soporte para movimiento reducido.
+Web estática en HTML, CSS y JavaScript. No necesita instalar dependencias ni configurar un servidor. Incluye diseño adaptable, una galería horizontal de cuatro miniaturas interactivas que cargan las webs originales, transición de entrada con botón para saltarla y transiciones asociadas al desplazamiento, SEO básico y soporte para movimiento reducido.
 
 ## Publicar en GitHub y Vercel
 
@@ -23,6 +23,12 @@ Para verlo en local, abre `index.html` en el navegador. Si prefieres un servidor
 - `styles.css`: diseño y marcos interactivos.
 - `main.js`: menú, entradas y efectos de desplazamiento.
 - `favicon.svg`: icono.
+
+## Galería horizontal
+
+En ordenador, la rueda desplaza los proyectos en horizontal cuando el cursor está sobre la galería. También se pueden usar las flechas. Al pasar el cursor o enfocar una tarjeta, esta se amplía como un icono del Dock. En móvil, desliza con el dedo; cada tarjeta encaja en pantalla. «Explorar aquí» activa la web dentro del marco y «Abrir web» la abre completa. Si una web externa impide su inclusión en iframe, seguirá disponible el enlace para abrirla.
+
+La interfaz emplea tres colores: negro `#171717`, crema `#f4f0e7` y verde lima `#d7ff37`. Los contenidos de las webs externas y la fotografía conservan sus colores originales.
 
 ## Ajuste de miniaturas
 

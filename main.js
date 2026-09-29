@@ -13,17 +13,45 @@ let ticking = false;
 function updateScroll() {
  const max = document.documentElement.scrollHeight - innerHeight;
  document.querySelector('.progress span').style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
- if (!reduced && innerWidth > 850) projects.forEach(section => {
-  const rect = section.getBoundingClientRect(); const distance = Math.max(1, rect.height - innerHeight);
-  const progress = Math.max(0, Math.min(1, -rect.top / distance));
-  const stage = section.querySelector('.stage');
-  stage.style.setProperty('--lift', `${(progress-.5)*-80}px`);
-  stage.style.setProperty('--scale', `${.91+progress*.12}`);
- });
  ticking = false;
 }
 addEventListener('scroll', () => {if (!ticking) {requestAnimationFrame(updateScroll);ticking=true;}}, {passive:true});
 addEventListener('resize', updateScroll);updateScroll();
+
+// Galería horizontal con ampliación del proyecto señalado, al estilo Dock.
+const gallery = document.querySelector('.project-track');
+if (gallery) {
+ const cards = [...gallery.querySelectorAll('[data-project]')];
+ const setActive = card => {
+  cards.forEach(item => item.classList.toggle('is-selected', item === card));
+  requestAnimationFrame(resizePreviews);
+ };
+ cards.forEach(card => {
+  card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') setActive(card); });
+  card.addEventListener('focusin', () => setActive(card));
+  card.addEventListener('click', e => { if (!e.target.closest('button,a,iframe')) setActive(card); });
+ });
+ gallery.addEventListener('wheel', e => {
+  if (e.target.closest('.preview-window.is-active')) return;
+  if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+  const delta = e.deltaY;
+  const next = gallery.scrollLeft + delta;
+  if ((delta > 0 && gallery.scrollLeft < gallery.scrollWidth - gallery.clientWidth - 2) || (delta < 0 && gallery.scrollLeft > 2)) {
+   e.preventDefault(); gallery.scrollLeft = next;
+  }
+ }, {passive:false});
+ document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => {
+  gallery.scrollBy({left: Number(button.dataset.galleryDirection) * Math.min(gallery.clientWidth * .7, 600), behavior: reduced ? 'instant' : 'smooth'});
+ }));
+ if ('IntersectionObserver' in window) {
+  const cardObserver = new IntersectionObserver(entries => {
+   if (innerWidth > 700) return;
+   const visible = entries.filter(entry => entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+   if (visible) setActive(visible.target);
+  }, {root:gallery, threshold:[.5,.7,.9]});
+  cards.forEach(card => cardObserver.observe(card));
+ }
+}
 
 // Escala la web real a cada marco y permite explorarla sin bloquear el scroll principal.
 const previewWindows = [...document.querySelectorAll('.preview-window')];
