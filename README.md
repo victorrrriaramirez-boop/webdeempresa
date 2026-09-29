@@ -1,6 +1,6 @@
 # Portfolio creativo
 
-Web estática en HTML, CSS y JavaScript. No necesita instalar dependencias ni configurar un servidor. Incluye diseño adaptable, una galería horizontal de cinco miniaturas interactivas que cargan las webs originales, transición de entrada con botón para saltarla y transiciones asociadas al desplazamiento, SEO básico y soporte para movimiento reducido.
+Web estática en HTML, CSS y JavaScript. No necesita instalar dependencias ni configurar un servidor. Incluye diseño adaptable, una galería horizontal de diez miniaturas interactivas que cargan las webs originales, transición de entrada con botón para saltarla y transiciones asociadas al desplazamiento, SEO básico y soporte para movimiento reducido.
 
 ## Publicar en GitHub y Vercel
 
@@ -12,7 +12,7 @@ Para verlo en local, abre `index.html` en el navegador. Si prefieres un servidor
 
 ## Personalizar antes de publicarlo como portfolio real
 
-- Las cinco miniaturas cargan directamente las URL facilitadas mediante `iframe`. Pulsa «Ampliar proyecto» o toca la tarjeta para abrir una vista grande; el botón «Cerrar» devuelve a la galería. Para reemplazarlas, cambia las URL de `src` y `href` en `index.html`. Los sitios originales deben seguir publicados y permitir su inclusión en marcos: si su servidor envía `X-Frame-Options` o una política `frame-ancestors` restrictiva, el navegador bloqueará la vista incrustada. En tal caso configura esos sitios para permitir el dominio del portfolio o utiliza capturas/vídeos autorizados como alternativa.
+- Las diez miniaturas cargan directamente las URL facilitadas mediante `iframe`. Pulsa «Ampliar proyecto» o toca la tarjeta para abrir una vista grande; el botón «Cerrar» devuelve a la galería. Para reemplazarlas, cambia las URL de `src` y `href` en `index.html`. Los sitios originales deben seguir publicados y permitir su inclusión en marcos: si su servidor envía `X-Frame-Options` o una política `frame-ancestors` restrictiva, el navegador bloqueará la vista incrustada. En tal caso configura esos sitios para permitir el dominio del portfolio o utiliza capturas/vídeos autorizados como alternativa.
 - Sustituye `contacto@tu-dominio.com` por el correo confirmado. Ahora es un ejemplo; no se ha verificado que sea un buzón activo. Quita también el aviso bajo el botón de contacto.
 - Sustituye «Estudio creativo» por el nombre definitivo, y ajusta el texto comercial, el título y la descripción SEO a la oferta definitiva. Evita afirmar resultados de posicionamiento sin datos propios.
 - Si conectas un dominio, añade una URL canónica y etiquetas `og:url` y `og:image` con la URL e imagen definitivas. El contenido es una sola página, por lo que no necesita rutas ni configuración especial de Vercel.
@@ -42,11 +42,11 @@ La portada utiliza `assets/hero-marketing.webp`, incluida en el proyecto, con mo
 
 ## Móvil
 
-La portada, la intro, las cinco miniaturas, los textos, la navegación y el pie se adaptan a pantallas pequeñas. Los visores usan una anchura virtual móvil o de tableta para mostrar las versiones responsive de cada proyecto. Las tarjetas de la portada desaparecen en móvil para dejar visible la foto y el mensaje.
+La portada, la intro, las diez miniaturas, los textos, la navegación y el pie se adaptan a pantallas pequeñas. Los visores usan una anchura virtual móvil o de tableta para mostrar las versiones responsive de cada proyecto. Las tarjetas de la portada desaparecen en móvil para dejar visible la foto y el mensaje.
 
 Los iconos de flechas, menú y controles son vectoriales y mantienen el mismo aspecto en móvil y ordenador.
 
-El indicador de la galería cambia de 01 a 05 con el desplazamiento, las flechas, el foco y el cursor. La interfaz usa fondos claros en la mayoría de las secciones.
+El indicador de la galería cambia de 01 a 10 con el desplazamiento, las flechas, el foco y el cursor. La interfaz usa fondos claros en la mayoría de las secciones.
 
 ## Vista ampliada
 
@@ -60,8 +60,12 @@ El tamaño de cada tarjeta cambia de forma progresiva según su posición en la 
 
 ## Quinto proyecto y nombres
 
-La galería contiene cinco proyectos. Los títulos visibles son Estilo sensorial, Estilo editorial, Estilo futurista, Estilo narrativo y Estilo contemporáneo. El quinto visor apunta a `https://prueba-altagracia.vercel.app/`. El contador se actualiza de 01 a 05.
+La galería contiene diez proyectos. Los títulos visibles son Estilo sensorial, editorial, futurista, narrativo, contemporáneo, Seven, Six, Blond, Five y Omega. El quinto visor apunta a `https://prueba-altagracia.vercel.app/`. El contador se actualiza de 01 a 10.
 
 En ordenador, con la galería a la vista, las teclas ← y → cambian entre proyectos. El verde se aplica solo a la tarjeta que llega a la posición de foco; durante el tránsito se retira del proyecto anterior antes de activarse en el siguiente.
 
 La galería desplaza su punto de foco a medida que avanza, de modo que el quinto proyecto se alinea correctamente al final. En móvil, las tarjetas mantienen un visor de altura estable, encajan al deslizar y muestran un único botón de ampliación. Al señalar una tarjeta con el cursor, se amplía suavemente y toma el verde; al ir a otra, la anterior recupera su color.
+
+## Proyectos 06–10
+
+Se han añadido, en este orden: `cinco-seven.vercel.app`, `seis-six.vercel.app`, `siete-blond.vercel.app`, `ocho-five.vercel.app` y `nueve-omega.vercel.app`. Comparten el visor, el botón «Ampliar proyecto», la animación de foco y el contador. Los nombres Seven, Six, Blond, Five y Omega proceden de los enlaces facilitados y se pueden editar en `index.html`.
