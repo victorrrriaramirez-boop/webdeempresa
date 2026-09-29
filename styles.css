@@ -146,3 +146,8 @@ body.modal-open{overflow:hidden}
  .project:hover,.project:focus-within{transform:scale(1.035);box-shadow:0 14px 32px #30343125;border-color:var(--acid)}
  .project .stage{transition:box-shadow .72s cubic-bezier(.22,.75,.22,1)}
 }
+/* Verde lima del proyecto activo, con aparición gradual. */
+.project{transition:transform .72s cubic-bezier(.22,.75,.22,1),box-shadow .72s cubic-bezier(.22,.75,.22,1),background-color .72s ease,border-color .6s ease}
+.project.is-selected,.project:hover,.project:focus-within{background-color:var(--acid);border-color:var(--ink)}
+@media(hover:hover) and (pointer:fine){.project{transition:transform .72s cubic-bezier(.22,.75,.22,1),box-shadow .72s cubic-bezier(.22,.75,.22,1),background-color .72s ease,border-color .6s ease}.project:hover,.project:focus-within{border-color:var(--ink)}}
+@media(prefers-reduced-motion:reduce){.project{transition:none!important}}
