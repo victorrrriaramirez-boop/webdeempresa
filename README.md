@@ -12,7 +12,7 @@ Para verlo en local, abre `index.html` en el navegador. Si prefieres un servidor
 
 ## Personalizar antes de publicarlo como portfolio real
 
-- Las cuatro miniaturas cargan directamente las URL facilitadas mediante `iframe`. Pulsa «Ampliar proyecto» o toca la tarjeta para abrir una vista grande; el botón «Cerrar» devuelve a la galería. También hay un enlace para abrir cada web completa. Para reemplazarlas, cambia las URL de `src` y `href` en `index.html`. Los sitios originales deben seguir publicados y permitir su inclusión en marcos: si su servidor envía `X-Frame-Options` o una política `frame-ancestors` restrictiva, el navegador bloqueará la vista incrustada. En tal caso configura esos sitios para permitir el dominio del portfolio o aporta capturas/vídeos autorizados como alternativa.
+- Las cuatro miniaturas cargan directamente las URL facilitadas mediante `iframe`. Pulsa «Ampliar proyecto» o toca la tarjeta para abrir una vista grande; el botón «Cerrar» devuelve a la galería. Para reemplazarlas, cambia las URL de `src` y `href` en `index.html`. Los sitios originales deben seguir publicados y permitir su inclusión en marcos: si su servidor envía `X-Frame-Options` o una política `frame-ancestors` restrictiva, el navegador bloqueará la vista incrustada. En tal caso configura esos sitios para permitir el dominio del portfolio o utiliza capturas/vídeos autorizados como alternativa.
 - Sustituye `contacto@tu-dominio.com` por el correo confirmado. Ahora es un ejemplo; no se ha verificado que sea un buzón activo. Quita también el aviso bajo el botón de contacto.
 - Sustituye «Estudio creativo» por el nombre definitivo, y ajusta el texto comercial, el título y la descripción SEO a la oferta definitiva. Evita afirmar resultados de posicionamiento sin datos propios.
 - Si conectas un dominio, añade una URL canónica y etiquetas `og:url` y `og:image` con la URL e imagen definitivas. El contenido es una sola página, por lo que no necesita rutas ni configuración especial de Vercel.
@@ -26,7 +26,7 @@ Para verlo en local, abre `index.html` en el navegador. Si prefieres un servidor
 
 ## Galería horizontal
 
-En ordenador, la rueda desplaza los proyectos en horizontal cuando el cursor está sobre la galería. También se pueden usar las flechas. Al pasar el cursor o enfocar una tarjeta, esta se amplía como un icono del Dock. En móvil, desliza con el dedo; cada tarjeta encaja en pantalla. «Ampliar proyecto» abre una ventana grande con la web a escala real, que se puede recorrer verticalmente. «Abrir web completa» la abre en otra pestaña. Si una web externa impide su inclusión en iframe, seguirá disponible el enlace para abrirla.
+En ordenador, la rueda desplaza los proyectos en horizontal cuando el cursor está sobre la galería. También se pueden usar las flechas. Al pasar el cursor o enfocar una tarjeta, esta se amplía como un icono del Dock. En móvil, desliza con el dedo; cada tarjeta encaja en pantalla. «Ampliar proyecto» abre una ventana grande con la web a escala real, que se puede recorrer verticalmente. Si una web externa impide su inclusión en iframe, será necesario habilitar ese dominio en la configuración del sitio de origen.
 
 La interfaz emplea tres colores: tinta suave `#303431`, crema `#f4f0e7` y verde lima `#d7ff37`. Los contenidos de las webs externas y la fotografía conservan sus colores originales.
 
@@ -50,4 +50,8 @@ El indicador de la galería cambia de 01 a 04 con el desplazamiento, las flechas
 
 ## Vista ampliada
 
-Toca una tarjeta o su botón para abrir el proyecto. La apertura y el cierre tienen una transición suave; se puede cerrar con el botón superior, pulsando fuera del panel en escritorio o con Escape cuando el foco está en los controles. La miniatura conserva su posición en la galería. La carga dentro de la vista ampliada sigue sujeta a las restricciones de iframe del sitio original; el enlace externo permanece disponible.
+Toca una tarjeta o su botón para abrir el proyecto. La apertura y el cierre tienen una transición suave; se puede cerrar con el botón superior, pulsando fuera del panel en escritorio o con Escape cuando el foco está en los controles. La miniatura conserva su posición en la galería. La carga dentro de la vista ampliada sigue sujeta a las restricciones de iframe del sitio original; será necesario que la web de origen permita la carga en iframe.
+
+## Desplazamiento y controles
+
+Cada tarjeta tiene ancho estable para evitar saltos al mover la galería. Usa las flechas, el gesto horizontal del trackpad o desliza con el dedo en móvil. La rueda vertical se aplica a la galería mientras haya proyectos en esa dirección; al llegar al extremo, continúa el desplazamiento normal de la página. La única acción de cada proyecto es «Ampliar proyecto». El indicador lateral de capítulos se ha eliminado.

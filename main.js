@@ -34,16 +34,21 @@ if (gallery) {
   card.addEventListener('click', e => { if (!e.target.closest('button,a')) openProject(card); });
  });
  gallery.addEventListener('wheel', e => {
-  if (e.target.closest('.preview-window.is-active')) return;
   if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
   const delta = e.deltaY;
-  const next = gallery.scrollLeft + delta;
   if ((delta > 0 && gallery.scrollLeft < gallery.scrollWidth - gallery.clientWidth - 2) || (delta < 0 && gallery.scrollLeft > 2)) {
-   e.preventDefault(); gallery.scrollLeft = next;
+   e.preventDefault(); gallery.scrollLeft += delta;
   }
  }, {passive:false});
  document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => {
-  gallery.scrollBy({left: Number(button.dataset.galleryDirection) * Math.min(gallery.clientWidth * .7, 600), behavior: reduced ? 'instant' : 'smooth'});
+  const selected = gallery.querySelector('.is-selected');
+  const nextIndex = Math.max(0, Math.min(cards.length - 1, cards.indexOf(selected) + Number(button.dataset.galleryDirection)));
+  const next = cards[nextIndex];
+  if (next) {
+   setActive(next);
+   const left = gallery.scrollLeft + next.getBoundingClientRect().left - gallery.getBoundingClientRect().left - gallery.clientWidth * .06;
+   gallery.scrollTo({left,behavior:reduced ? 'instant' : 'smooth'});
+  }
  }));
  let galleryTicking = false;
  gallery.addEventListener('scroll', () => {
@@ -77,14 +82,12 @@ addEventListener('resize', resizePreviews);resizePreviews();
 const modal = document.getElementById('project-modal');
 const modalFrame = document.getElementById('modal-frame');
 const modalTitle = document.getElementById('modal-title');
-const modalExternal = document.getElementById('modal-external');
 const modalClose = document.getElementById('modal-close');
 let returnFocus = null;
 function openProject(card) {
- const url = card.querySelector('.project-link').href;
+ const url = card.querySelector('.preview-window iframe').src;
  returnFocus = document.activeElement === document.body ? card.querySelector('.preview-toggle') : document.activeElement;
  modalTitle.textContent = card.querySelector('.project-n').textContent;
- modalExternal.href = url;
  modalFrame.src = url;
  modal.hidden = false;
  document.body.classList.add('modal-open');
@@ -110,10 +113,10 @@ document.addEventListener('keydown', e => {
  if (modal.hidden) return;
  if (e.key === 'Escape') closeProject();
  if (e.key === 'Tab') {
-  const focusable = [modalExternal, modalClose, modalFrame];
+  const focusable = [modalClose, modalFrame];
   const index = focusable.indexOf(document.activeElement);
   if (e.shiftKey && index === 0) {e.preventDefault();modalFrame.focus();}
-  else if (!e.shiftKey && index === 2) {e.preventDefault();modalExternal.focus();}
+  else if (!e.shiftKey && index === 1) {e.preventDefault();modalClose.focus();}
  }
 });
 

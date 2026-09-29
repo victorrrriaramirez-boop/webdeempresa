@@ -122,3 +122,13 @@ body.modal-open{overflow:hidden}
 @media(max-width:700px){.project-modal{padding:0}.project-modal-panel{width:100%;height:100dvh;border:0;border-radius:0;transform:translateY(45px) scale(.93)}.project-modal-toolbar{min-height:62px;padding:8px max(12px,env(safe-area-inset-right)) 8px max(12px,env(safe-area-inset-left));font-size:10px}.project-modal-actions{gap:5px}.project-modal-actions a,.project-modal-actions button{min-height:42px;padding:8px 10px;font-size:10px}.project-modal iframe{height:calc(100dvh - 62px)}.preview-window iframe{pointer-events:none!important}}
 @media(max-width:380px){.project-modal-toolbar{gap:5px}.project-modal-actions a{max-width:95px;text-align:center;line-height:1.1}}
 @media(prefers-reduced-motion:reduce){.project-modal-backdrop,.project-modal-panel{transition:none!important}}
+/* Desplazamiento estable: la selección no altera el ancho de las tarjetas. */
+.work-intro{min-height:480px}
+.project-track{gap:16px;padding-inline:4vw;scroll-padding-inline:4vw;scroll-snap-type:none;overscroll-behavior-x:auto;-webkit-overflow-scrolling:touch}
+.project,.project.is-selected,.project:hover,.project:focus-within{flex:0 0 clamp(430px,46vw,700px);transition:background .24s ease,border-color .24s ease}
+.project-sticky{height:630px}
+.gallery-heading{padding-inline:4vw}
+.project-modal-actions{margin-left:auto}
+@media(max-width:850px){.project,.project.is-selected,.project:hover,.project:focus-within{flex-basis:min(82vw,510px)}.project-sticky{height:650px}}
+@media(max-width:700px){.work-intro{min-height:0}.project-track{gap:12px;padding-inline:6vw;scroll-padding-inline:6vw;scroll-snap-type:x proximity}.gallery-heading{padding-inline:6vw}.project,.project.is-selected,.project:hover,.project:focus-within{flex-basis:88vw}.project-sticky{height:clamp(570px,150vw,665px)}}
+@media(max-width:380px){.project-sticky{height:600px}}
