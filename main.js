@@ -69,7 +69,9 @@ previewWindows.forEach(win => {
  button.addEventListener('click', () => {
   const active = win.classList.toggle('is-active');
   button.setAttribute('aria-pressed', String(active));
-  button.textContent = active ? 'Salir de la vista ✕' : 'Explorar aquí ↗';
+  button.innerHTML = active
+   ? 'Salir de la vista <svg class="ui-icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>'
+   : 'Explorar aquí <svg class="ui-icon icon-diagonal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
   win.querySelector('iframe').tabIndex = active ? 0 : -1;
  });
 });

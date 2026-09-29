@@ -68,3 +68,14 @@ body.intro-open{overflow:hidden}.intro{position:fixed;z-index:100;inset:0;displa
 @media(max-width:700px){.projects{padding:40px 0 55px}.gallery-heading{padding:0 6vw 20px;font-size:10px;letter-spacing:.06em}.gallery-arrows button{width:42px;height:42px}.project-track{gap:14px;padding:4px 6vw 28px;scroll-snap-type:x mandatory}.project,.project.is-selected,.project:hover,.project:focus-within{flex-basis:88vw}.project-sticky{display:flex;flex-direction:column;height:clamp(590px,155vw,690px);padding:20px;gap:14px}.project-copy h3{font-size:clamp(34px,8vw,48px);line-height:1;margin:12px 0 8px}.project-copy p{font-size:12px}.tags{margin:10px 0 8px}.tags span{font-size:9px;padding:5px 7px}.project-link{font-size:11px}.stage,.project .stage{align-self:stretch;min-height:265px;max-height:none;width:100%;height:auto;margin:0;box-shadow:7px 8px 0 #17171725}.preview-controls{padding:8px;gap:5px}.preview-controls>span{font-size:8px}.preview-controls button,.preview-controls a{min-height:34px;padding:7px 9px;font-size:9px}}
 @media(max-width:380px){.project-sticky{height:625px;padding:16px}.project-copy h3{font-size:33px}.stage,.project .stage{min-height:250px}}
 @media(prefers-reduced-motion:reduce){.project,.stage{transition:none!important}}
+/* Iconos vectoriales con el mismo trazo en iOS, Android y escritorio. */
+.ui-icon{display:inline-block;width:1.1em;height:1.1em;vertical-align:-.16em;flex:none}
+.icon-left{transform:rotate(180deg)}.icon-down{transform:rotate(90deg)}.icon-up{transform:rotate(-90deg)}.icon-diagonal{transform:rotate(-45deg)}.icon-down-diagonal{transform:rotate(45deg)}
+.brand-mark{display:inline-block;width:.76em;height:.76em;background:currentColor;border-radius:50%;font-size:49px;letter-spacing:0;margin-right:6px;flex:none}
+.window-dots{display:inline-flex;align-items:center;gap:5px}.window-dots i{display:block;width:7px;height:7px;border:1px solid currentColor;border-radius:50%}
+.menu-icon{display:block;width:25px;height:25px}.menu-toggle{place-items:center;min-width:44px;min-height:44px}
+.gallery-arrows button{display:grid;place-items:center}.gallery-arrows .ui-icon{width:23px;height:23px}
+.round-link .ui-icon{width:31px;height:31px}
+.preview-controls button .ui-icon,.preview-controls a .ui-icon{width:14px;height:14px;margin-left:3px}
+@media(max-width:850px){.menu-toggle{display:grid}}
+@media(max-width:700px){.brand-mark{font-size:37px;margin-right:0}.round-link .ui-icon{width:22px;height:22px}.gallery-arrows .ui-icon{width:20px;height:20px}}

@@ -43,3 +43,5 @@ La portada utiliza `assets/hero-marketing.webp`, incluida en el proyecto, con mo
 ## Móvil
 
 La portada, la intro, las cuatro miniaturas, los textos, la navegación y el pie se adaptan a pantallas pequeñas. Los visores usan una anchura virtual móvil o de tableta para mostrar las versiones responsive de cada proyecto. Las tarjetas de la portada desaparecen en móvil para dejar visible la foto y el mensaje.
+
+Los iconos de flechas, menú y controles son vectoriales y mantienen el mismo aspecto en móvil y ordenador.
