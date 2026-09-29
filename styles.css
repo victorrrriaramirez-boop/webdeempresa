@@ -151,3 +151,11 @@ body.modal-open{overflow:hidden}
 .project.is-selected,.project:hover,.project:focus-within{background-color:var(--acid);border-color:var(--ink)}
 @media(hover:hover) and (pointer:fine){.project{transition:transform .72s cubic-bezier(.22,.75,.22,1),box-shadow .72s cubic-bezier(.22,.75,.22,1),background-color .72s ease,border-color .6s ease}.project:hover,.project:focus-within{border-color:var(--ink)}}
 @media(prefers-reduced-motion:reduce){.project{transition:none!important}}
+/* Profundidad progresiva mientras se recorre la galería en cualquier pantalla. */
+.project{position:relative;z-index:1;transform:scale(var(--depth-scale,1));transform-origin:center center;transition:transform .24s ease-out,background-color .55s ease,box-shadow .55s ease}
+.project.is-selected{z-index:3}
+@media(hover:hover) and (pointer:fine){
+ .project:hover,.project:focus-within{z-index:4;transform:scale(1.055);transition:transform .65s cubic-bezier(.22,.75,.22,1),background-color .55s ease,box-shadow .55s ease}
+}
+@media(max-width:700px){.project-track{padding-top:22px;padding-bottom:36px}.project,.project.is-selected,.project:hover,.project:focus-within{transform:scale(var(--depth-scale,1))}}
+@media(prefers-reduced-motion:reduce){.project,.project:hover,.project:focus-within{transform:none!important;transition:none!important}}

@@ -50,22 +50,34 @@ if (gallery) {
    gallery.scrollTo({left,behavior:reduced ? 'instant' : 'smooth'});
   }
  }));
+ const updateGalleryDepth = () => {
+  const box = gallery.getBoundingClientRect();
+  const focusLine = box.left + (innerWidth <= 700
+   ? gallery.clientWidth / 2
+   : gallery.clientWidth * .04 + cards[0].offsetWidth / 2);
+  let nearest = cards[0];
+  let nearestDistance = Infinity;
+  cards.forEach(card => {
+   const rect = card.getBoundingClientRect();
+   const distance = Math.abs(rect.left + rect.width / 2 - focusLine);
+   const strength = Math.max(0, 1 - distance / (card.offsetWidth * .85));
+   card.style.setProperty('--depth-scale', reduced ? '1' : (1 + strength * (innerWidth <= 700 ? .045 : .055)).toFixed(4));
+   if (distance < nearestDistance) {nearest = card; nearestDistance = distance;}
+  });
+  if (nearest && !nearest.classList.contains('is-selected')) setActive(nearest);
+ };
  let galleryTicking = false;
  gallery.addEventListener('scroll', () => {
   if (galleryTicking) return;
   galleryTicking = true;
   requestAnimationFrame(() => {
-   const center = gallery.getBoundingClientRect().left + (innerWidth <= 700 ? gallery.clientWidth / 2 : Math.min(gallery.clientWidth * .25, 220));
-   const nearest = cards.reduce((best, card) => {
-    const rect = card.getBoundingClientRect();
-    const distance = Math.abs(rect.left + rect.width / 2 - center);
-    return distance < best.distance ? {card, distance} : best;
-   }, {card:cards[0], distance:Infinity}).card;
-   if (nearest && !nearest.classList.contains('is-selected')) setActive(nearest);
+   updateGalleryDepth();
    galleryTicking = false;
   });
  }, {passive:true});
+ addEventListener('resize', updateGalleryDepth);
  setActive(cards[0]);
+ requestAnimationFrame(updateGalleryDepth);
 }
 
 // Las miniaturas muestran la web escalada; la vista grande usa el ancho real del dispositivo.
@@ -87,7 +99,7 @@ let returnFocus = null;
 function openProject(card) {
  const url = card.querySelector('.preview-window iframe').src;
  returnFocus = document.activeElement === document.body ? card.querySelector('.preview-toggle') : document.activeElement;
- modalTitle.textContent = card.querySelector('.project-n').textContent;
+ modalTitle.textContent = card.querySelector('.project-copy h3').textContent.trim();
  modalFrame.src = url;
  modal.hidden = false;
  document.body.classList.add('modal-open');
