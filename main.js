@@ -22,14 +22,16 @@ addEventListener('resize', updateScroll);updateScroll();
 const gallery = document.querySelector('.project-track');
 if (gallery) {
  const cards = [...gallery.querySelectorAll('[data-project]')];
+ const counter = document.getElementById('gallery-current');
  const setActive = card => {
   cards.forEach(item => item.classList.toggle('is-selected', item === card));
+  if (counter) counter.textContent = String(cards.indexOf(card) + 1).padStart(2, '0');
   requestAnimationFrame(resizePreviews);
  };
  cards.forEach(card => {
   card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') setActive(card); });
   card.addEventListener('focusin', () => setActive(card));
-  card.addEventListener('click', e => { if (!e.target.closest('button,a,iframe')) setActive(card); });
+  card.addEventListener('click', e => { if (!e.target.closest('button,a')) openProject(card); });
  });
  gallery.addEventListener('wheel', e => {
   if (e.target.closest('.preview-window.is-active')) return;
@@ -43,37 +45,76 @@ if (gallery) {
  document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => {
   gallery.scrollBy({left: Number(button.dataset.galleryDirection) * Math.min(gallery.clientWidth * .7, 600), behavior: reduced ? 'instant' : 'smooth'});
  }));
- if ('IntersectionObserver' in window) {
-  const cardObserver = new IntersectionObserver(entries => {
-   if (innerWidth > 700) return;
-   const visible = entries.filter(entry => entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-   if (visible) setActive(visible.target);
-  }, {root:gallery, threshold:[.5,.7,.9]});
-  cards.forEach(card => cardObserver.observe(card));
- }
+ let galleryTicking = false;
+ gallery.addEventListener('scroll', () => {
+  if (galleryTicking) return;
+  galleryTicking = true;
+  requestAnimationFrame(() => {
+   const center = gallery.getBoundingClientRect().left + (innerWidth <= 700 ? gallery.clientWidth / 2 : Math.min(gallery.clientWidth * .25, 220));
+   const nearest = cards.reduce((best, card) => {
+    const rect = card.getBoundingClientRect();
+    const distance = Math.abs(rect.left + rect.width / 2 - center);
+    return distance < best.distance ? {card, distance} : best;
+   }, {card:cards[0], distance:Infinity}).card;
+   if (nearest && !nearest.classList.contains('is-selected')) setActive(nearest);
+   galleryTicking = false;
+  });
+ }, {passive:true});
+ setActive(cards[0]);
 }
 
-// Escala la web real a cada marco y permite explorarla sin bloquear el scroll principal.
+// Las miniaturas muestran la web escalada; la vista grande usa el ancho real del dispositivo.
 const previewWindows = [...document.querySelectorAll('.preview-window')];
-const resizePreviews = () => previewWindows.forEach(win => {
+function resizePreviews() { previewWindows.forEach(win => {
  const viewportWidth = innerWidth <= 850 ? Math.max(390, Math.min(innerWidth, 850)) : 1440;
  win.style.setProperty('--preview-width', `${viewportWidth}px`);
  const scale = win.clientWidth / viewportWidth;
  win.style.setProperty('--preview-scale', String(scale));
  win.querySelector('iframe').style.height = `${Math.max(900, Math.ceil(win.clientHeight / Math.max(scale,.1)))}px`;
-});
+}); }
 if ('ResizeObserver' in window) {const ro = new ResizeObserver(resizePreviews);previewWindows.forEach(win => ro.observe(win));}
 addEventListener('resize', resizePreviews);resizePreviews();
-previewWindows.forEach(win => {
- const button = win.querySelector('.preview-toggle');
- button.addEventListener('click', () => {
-  const active = win.classList.toggle('is-active');
-  button.setAttribute('aria-pressed', String(active));
-  button.innerHTML = active
-   ? 'Salir de la vista <svg class="ui-icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>'
-   : 'Explorar aquí <svg class="ui-icon icon-diagonal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
-  win.querySelector('iframe').tabIndex = active ? 0 : -1;
- });
+const modal = document.getElementById('project-modal');
+const modalFrame = document.getElementById('modal-frame');
+const modalTitle = document.getElementById('modal-title');
+const modalExternal = document.getElementById('modal-external');
+const modalClose = document.getElementById('modal-close');
+let returnFocus = null;
+function openProject(card) {
+ const url = card.querySelector('.project-link').href;
+ returnFocus = document.activeElement === document.body ? card.querySelector('.preview-toggle') : document.activeElement;
+ modalTitle.textContent = card.querySelector('.project-n').textContent;
+ modalExternal.href = url;
+ modalFrame.src = url;
+ modal.hidden = false;
+ document.body.classList.add('modal-open');
+ requestAnimationFrame(() => modal.classList.add('is-open'));
+ modalClose.focus();
+}
+function closeProject() {
+ if (modal.hidden) return;
+ modal.classList.remove('is-open');
+ document.body.classList.remove('modal-open');
+ const finish = () => {
+  if (modal.classList.contains('is-open')) return;
+  modal.hidden = true;
+  modalFrame.src = 'about:blank';
+  if (returnFocus && returnFocus !== document.body) returnFocus.focus();
+ };
+ if (reduced) finish(); else setTimeout(finish, 280);
+}
+document.querySelectorAll('.preview-toggle').forEach(button => button.addEventListener('click', () => openProject(button.closest('[data-project]'))));
+modalClose.addEventListener('click', closeProject);
+modal.querySelector('[data-close-modal]').addEventListener('click', closeProject);
+document.addEventListener('keydown', e => {
+ if (modal.hidden) return;
+ if (e.key === 'Escape') closeProject();
+ if (e.key === 'Tab') {
+  const focusable = [modalExternal, modalClose, modalFrame];
+  const index = focusable.indexOf(document.activeElement);
+  if (e.shiftKey && index === 0) {e.preventDefault();modalFrame.focus();}
+  else if (!e.shiftKey && index === 2) {e.preventDefault();modalExternal.focus();}
+ }
 });
 
 // Transición inicial: se omite al tocar el botón y respeta movimiento reducido.
