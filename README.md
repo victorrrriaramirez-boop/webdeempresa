@@ -61,3 +61,5 @@ El tamaño de cada tarjeta cambia de forma progresiva según su posición en la 
 ## Quinto proyecto y nombres
 
 La galería contiene cinco proyectos. Los títulos visibles son Estilo sensorial, Estilo editorial, Estilo futurista, Estilo narrativo y Estilo contemporáneo. El quinto visor apunta a `https://prueba-altagracia.vercel.app/`. El contador se actualiza de 01 a 05.
+
+En ordenador, con la galería a la vista, las teclas ← y → cambian entre proyectos. El verde se aplica solo a la tarjeta que llega a la posición de foco; durante el tránsito se retira del proyecto anterior antes de activarse en el siguiente.

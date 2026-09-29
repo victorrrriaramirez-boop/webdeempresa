@@ -23,48 +23,67 @@ const gallery = document.querySelector('.project-track');
 if (gallery) {
  const cards = [...gallery.querySelectorAll('[data-project]')];
  const counter = document.getElementById('gallery-current');
+ let navTargetIndex = null;
  const setActive = card => {
   cards.forEach(item => item.classList.toggle('is-selected', item === card));
-  if (counter) counter.textContent = String(cards.indexOf(card) + 1).padStart(2, '0');
-  requestAnimationFrame(resizePreviews);
+  if (card && counter) counter.textContent = String(cards.indexOf(card) + 1).padStart(2, '0');
  };
  cards.forEach(card => {
-  card.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') setActive(card); });
-  card.addEventListener('focusin', () => setActive(card));
   card.addEventListener('click', e => { if (!e.target.closest('button,a')) openProject(card); });
  });
  gallery.addEventListener('wheel', e => {
+  navTargetIndex = null;
   if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
   const delta = e.deltaY;
   if ((delta > 0 && gallery.scrollLeft < gallery.scrollWidth - gallery.clientWidth - 2) || (delta < 0 && gallery.scrollLeft > 2)) {
    e.preventDefault(); gallery.scrollLeft += delta;
   }
  }, {passive:false});
- document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => {
-  const selected = gallery.querySelector('.is-selected');
-  const nextIndex = Math.max(0, Math.min(cards.length - 1, cards.indexOf(selected) + Number(button.dataset.galleryDirection)));
+ gallery.addEventListener('touchstart', () => {navTargetIndex = null;}, {passive:true});
+ const focusLine = () => gallery.getBoundingClientRect().left + (innerWidth <= 700
+  ? gallery.clientWidth / 2
+  : gallery.clientWidth * .04 + cards[0].offsetWidth / 2);
+ function moveProject(direction) {
+  const selectedIndex = cards.indexOf(gallery.querySelector('.is-selected'));
+  const current = navTargetIndex ?? (selectedIndex >= 0 ? selectedIndex : Math.max(0, Number(counter.textContent) - 1));
+  const nextIndex = Math.max(0, Math.min(cards.length - 1, current + direction));
+  if (nextIndex === current) return;
   const next = cards[nextIndex];
   if (next) {
-   setActive(next);
-   const left = gallery.scrollLeft + next.getBoundingClientRect().left - gallery.getBoundingClientRect().left - gallery.clientWidth * .06;
+   navTargetIndex = nextIndex;
+   setActive(null);
+   const rect = next.getBoundingClientRect();
+   const left = gallery.scrollLeft + rect.left + rect.width / 2 - focusLine();
    gallery.scrollTo({left,behavior:reduced ? 'instant' : 'smooth'});
+   if (reduced) requestAnimationFrame(updateGalleryDepth);
   }
- }));
+ }
+ document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => moveProject(Number(button.dataset.galleryDirection))));
+ document.addEventListener('keydown', e => {
+  if (innerWidth <= 700 || !['ArrowLeft','ArrowRight'].includes(e.key) || e.altKey || e.ctrlKey || e.metaKey || !document.getElementById('project-modal').hidden || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '')) return;
+  const rect = gallery.closest('.projects').getBoundingClientRect();
+  if (rect.top > innerHeight * .7 || rect.bottom < innerHeight * .3) return;
+  e.preventDefault();
+  moveProject(e.key === 'ArrowRight' ? 1 : -1);
+ });
  const updateGalleryDepth = () => {
-  const box = gallery.getBoundingClientRect();
-  const focusLine = box.left + (innerWidth <= 700
-   ? gallery.clientWidth / 2
-   : gallery.clientWidth * .04 + cards[0].offsetWidth / 2);
+  const line = focusLine();
   let nearest = cards[0];
   let nearestDistance = Infinity;
   cards.forEach(card => {
    const rect = card.getBoundingClientRect();
-   const distance = Math.abs(rect.left + rect.width / 2 - focusLine);
+   const distance = Math.abs(rect.left + rect.width / 2 - line);
    const strength = Math.max(0, 1 - distance / (card.offsetWidth * .85));
    card.style.setProperty('--depth-scale', reduced ? '1' : (1 + strength * (innerWidth <= 700 ? .045 : .055)).toFixed(4));
    if (distance < nearestDistance) {nearest = card; nearestDistance = distance;}
   });
-  if (nearest && !nearest.classList.contains('is-selected')) setActive(nearest);
+  const target = navTargetIndex === null ? nearest : cards[navTargetIndex];
+  const rect = target.getBoundingClientRect();
+  const aligned = Math.abs(rect.left + rect.width / 2 - line) < target.offsetWidth * .12;
+  if (aligned) {
+   if (!target.classList.contains('is-selected')) setActive(target);
+   if (navTargetIndex !== null) navTargetIndex = null;
+  } else if (gallery.querySelector('.is-selected')) setActive(null);
  };
  let galleryTicking = false;
  gallery.addEventListener('scroll', () => {

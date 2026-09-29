@@ -159,3 +159,11 @@ body.modal-open{overflow:hidden}
 }
 @media(max-width:700px){.project-track{padding-top:22px;padding-bottom:36px}.project,.project.is-selected,.project:hover,.project:focus-within{transform:scale(var(--depth-scale,1))}}
 @media(prefers-reduced-motion:reduce){.project,.project:hover,.project:focus-within{transform:none!important;transition:none!important}}
+/* El verde pertenece únicamente al proyecto alineado con el foco. */
+.project,.project:hover,.project:focus-within{background-color:var(--cream);transition:transform .24s ease-out,background-color .18s ease,box-shadow .45s ease}
+.project.is-selected,.project.is-selected:hover,.project.is-selected:focus-within{background-color:var(--acid);transition:transform .24s ease-out,background-color .35s ease,box-shadow .45s ease}
+@media(hover:hover) and (pointer:fine){
+ .project:hover,.project:focus-within{transition:transform .65s cubic-bezier(.22,.75,.22,1),background-color .18s ease,box-shadow .45s ease}
+ .project.is-selected:hover,.project.is-selected:focus-within{transition:transform .65s cubic-bezier(.22,.75,.22,1),background-color .35s ease,box-shadow .45s ease}
+}
+@media(prefers-reduced-motion:reduce){.project,.project:hover,.project:focus-within{transition:none!important}}
