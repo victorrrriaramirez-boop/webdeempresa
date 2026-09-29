@@ -139,3 +139,10 @@ body.modal-open{overflow:hidden}
  .project:hover,.project:focus-within{z-index:3;transform:translateY(-5px) scale(1.065);box-shadow:0 22px 45px #30343133}
 }
 @media(prefers-reduced-motion:reduce){.project:hover,.project:focus-within{transform:none!important}}
+/* Hover refinado: ampliación discreta y transición continua. */
+.project.is-selected,.project:hover,.project:focus-within{background:var(--cream);border-color:var(--ink)}
+@media(hover:hover) and (pointer:fine){
+ .project{transition:transform .72s cubic-bezier(.22,.75,.22,1),box-shadow .72s cubic-bezier(.22,.75,.22,1),border-color .45s ease;backface-visibility:hidden}
+ .project:hover,.project:focus-within{transform:scale(1.035);box-shadow:0 14px 32px #30343125;border-color:var(--acid)}
+ .project .stage{transition:box-shadow .72s cubic-bezier(.22,.75,.22,1)}
+}
