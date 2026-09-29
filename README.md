@@ -36,9 +36,9 @@ Las miniaturas usan una vista escalada; al ampliarlas, el iframe ocupa la pantal
 
 ## Nueva dirección visual
 
-La versión inmersiva incorpora fotografía editorial de un equipo creativo con animación automática sutil, capítulos de scroll, capas con profundidad, entrada con transición y marcos interactivos. El movimiento se reduce automáticamente si el visitante lo solicita en su dispositivo. Se inspira en la narrativa visual de los cuatro estudios indicados, sin reutilizar sus textos ni recursos.
+La versión inmersiva incorpora fotografía editorial de una sesión de diseño digital con animación automática sutil, capítulos de scroll, capas con profundidad, entrada con transición y marcos interactivos. El movimiento se reduce automáticamente si el visitante lo solicita en su dispositivo. Se inspira en la narrativa visual de los cuatro estudios indicados, sin reutilizar sus textos ni recursos.
 
-La portada utiliza `assets/hero-marketing.webp`, incluida en el proyecto, con movimiento lento y tarjetas temáticas de estrategia, diseño web y SEO. No utiliza seguimiento del puntero. La fotografía es una imagen creada para este diseño y representa una escena ilustrativa; no debe presentarse como una foto del equipo real de la empresa.
+La portada utiliza `assets/hero-estudio-digital.webp`, creada para este portfolio, con movimiento lento y tarjetas temáticas de estrategia, diseño web y SEO. No utiliza seguimiento del puntero. La fotografía es una imagen creada para este diseño y representa una escena ilustrativa; no debe presentarse como una foto del equipo real de la empresa.
 
 ## Móvil
 
@@ -69,3 +69,7 @@ La galería desplaza su punto de foco a medida que avanza, de modo que el quinto
 ## Proyectos 06–10
 
 Se han añadido, en este orden: `cinco-seven.vercel.app`, `seis-six.vercel.app`, `siete-blond.vercel.app`, `ocho-five.vercel.app` y `nueve-omega.vercel.app`. Comparten el visor, el botón «Ampliar proyecto», la animación de foco y el contador. Los nombres Seven, Six, Blond, Five y Omega proceden de los enlaces facilitados y se pueden editar en `index.html`.
+
+## Actualización visual
+
+La portada muestra una fotografía editorial nueva de un estudio trabajando en interfaces y materiales de marca. Incluye un acceso directo a los diez estilos. La imagen es ilustrativa y no representa al equipo real de la empresa.
