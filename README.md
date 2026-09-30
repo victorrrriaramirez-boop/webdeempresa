@@ -31,6 +31,6 @@ Las miniaturas y la vista ampliada cargan las webs mediante `iframe`. Si una web
 
 ## Diseño e interacción
 
-La interfaz utiliza tinta suave `#303431`, crema `#f4f0e7` y verde lima `#d7ff37`. La portada contiene un titular, una frase de apoyo y un botón hacia los seis estilos. Su fotografía se encuentra en `assets/hero-minimal-web.webp` y permanece estática.
+La interfaz utiliza tinta suave `#303431`, crema `#f4f0e7` y verde lima `#d7ff37`. La portada presenta la agencia de marketing y su servicio de páginas web a medida, con un mensaje breve y un botón hacia los seis estilos. Su fotografía se encuentra en `assets/hero-minimal-web.webp` y permanece estática.
 
 En ordenador, usa las flechas de la galería, las teclas izquierda y derecha cuando la sección está visible, o el desplazamiento horizontal. En móvil, desliza las tarjetas. El proyecto que entra en foco crece y toma el verde. Pulsa «Ampliar proyecto» para recorrer su web en una vista grande; «Cerrar» devuelve a la galería.

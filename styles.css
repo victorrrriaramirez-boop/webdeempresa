@@ -213,3 +213,13 @@ body.modal-open{overflow:hidden}
 @media(max-width:850px){.hero{height:auto;min-height:690px;max-height:none}.hero h1{font-size:clamp(55px,9vw,82px)}}
 @media(max-width:700px){.hero{height:auto;min-height:650px;padding:105px 6vw 58px}.hero-photo:before{background-image:linear-gradient(90deg,#303431e8 0%,#303431c7 65%,#30343182 100%),linear-gradient(0deg,#303431a3,transparent 75%),url('assets/hero-minimal-web.webp');background-position:72% center}.hero h1{font-size:clamp(42px,9.7vw,64px);line-height:.98;max-width:100%;overflow-wrap:normal}.hero .eyebrow{margin-bottom:25px;font-size:10px}.hero-bottom{margin-top:30px;gap:23px}.hero-bottom p{font-size:16px;max-width:315px}.hero-cta{min-height:48px;padding:13px 18px}}
 @media(max-width:380px){.hero h1{font-size:41px}.hero{min-height:620px}}
+
+/* Portada de agencia: propuesta clara y acento gráfico. */
+.hero h1{max-width:1020px;font-size:clamp(64px,7.4vw,118px);letter-spacing:-.065em;line-height:1.02}
+.hero h1 .highlight{display:inline-block;position:relative;padding-bottom:12px}
+.hero h1 .highlight:after{content:"";position:absolute;left:0;bottom:0;width:72px;height:5px;background:var(--acid);border-radius:10px}
+.hero-bottom{max-width:530px;margin-top:28px;gap:26px}
+.hero-bottom p{max-width:510px;font-size:clamp(17px,1.4vw,20px);line-height:1.55}
+.hero .eyebrow{letter-spacing:.12em}
+@media(max-width:850px){.hero h1{font-size:clamp(50px,8vw,78px)}}
+@media(max-width:700px){.hero h1{font-size:clamp(36px,8.6vw,58px);letter-spacing:-.06em}.hero h1 .highlight{padding-bottom:16px}.hero-bottom{margin-top:25px}.hero-bottom p{font-size:16px;max-width:350px}.hero .eyebrow{font-size:9px;letter-spacing:.08em}.hero{min-height:650px}}
