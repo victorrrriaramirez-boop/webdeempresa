@@ -175,14 +175,7 @@ function finishIntro() {
  setTimeout(() => {intro.classList.add('is-done');intro.setAttribute('aria-hidden','true');}, reduced ? 0 : 1000);
 }
 document.getElementById('skip-intro').addEventListener('click',finishIntro);
-setTimeout(finishIntro, reduced ? 100 : 2550);
-// Profundidad muy suave ligada al scroll. No hay interacción con el puntero.
-const hero = document.querySelector('.hero');
-const updateHeroDepth = () => {
- if (!hero || reduced) return;
- hero.style.setProperty('--photo-scroll', `${Math.min(65, scrollY * .12)}px`);
-};
-addEventListener('scroll', updateHeroDepth, {passive:true});updateHeroDepth();
+setTimeout(finishIntro, reduced ? 100 : 1700);
 const chapterCount=document.getElementById('chapter-count');
 const art=document.querySelector('.work-intro-art');
 const chapters=[document.querySelector('.hero'),document.querySelector('#metodo'),document.querySelector('#trabajos'),document.querySelector('#servicios')];
