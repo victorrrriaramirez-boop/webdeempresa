@@ -93,3 +93,21 @@ footer{background:var(--cream);color:var(--ink)}
 @keyframes title-cycle{0%{opacity:0;transform:translateY(90%)}5%,28%{opacity:1;transform:translateY(0)}33%,100%{opacity:0;transform:translateY(-105%)}}
 @media(max-width:700px){.rotating-title{height:1.4em}.title-frames>span:after{bottom:.16em;width:40px;left:calc(50% - 20px);height:2px}}
 @media(prefers-reduced-motion:reduce){.title-frames>span{animation:none;will-change:auto}.title-frames>span:first-child{opacity:1;transform:none}.title-frames>span:not(:first-child){display:none}}
+
+/* Detalles de movimiento coherentes con la dirección editorial. */
+@media(prefers-reduced-motion:no-preference){
+ .manifesto .reveal,.work-intro .reveal,.services .reveal,.contact .reveal{transition:opacity .8s ease,transform .9s cubic-bezier(.22,.7,.22,1);opacity:0;transform:translateY(24px)}
+ .manifesto .reveal.visible,.work-intro .reveal.visible,.services .reveal.visible,.contact .reveal.visible{opacity:1;transform:translateY(0)}
+ .work-intro h2,.services h2,.contact h2{transition-delay:.09s!important}
+ .work-intro p,.contact-link{transition-delay:.16s!important}
+ .service-row:nth-child(2){transition-delay:.1s!important}.service-row:nth-child(3){transition-delay:.2s!important}
+}
+.hero-cta .ui-icon,.nav-cta .ui-icon,.contact-link .ui-icon,.manifesto-foot a .ui-icon{transition:transform .45s cubic-bezier(.22,.7,.22,1)}
+.hero-cta:hover .ui-icon,.nav-cta:hover .ui-icon,.contact-link:hover .ui-icon,.manifesto-foot a:hover .ui-icon{transform:translate(3px,-3px)}
+.service-row{position:relative;isolation:isolate;background:transparent!important;overflow:hidden;transition:padding .45s ease}
+.service-row:before{content:"";position:absolute;inset:0;z-index:-1;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.22,.7,.22,1)}
+@media(hover:hover) and (pointer:fine){.service-row:hover:before{transform:scaleX(1)}.service-row:hover{padding-left:16px;padding-right:16px}.service-row>span:last-child{transition:transform .45s ease}.service-row:hover>span:last-child{transform:rotate(-8deg)}}
+.header nav>a:not(.nav-cta){position:relative;padding:9px 0}
+.header nav>a:not(.nav-cta):after{content:"";position:absolute;left:0;right:0;bottom:3px;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.header nav>a:hover:after,.header nav>a:focus-visible:after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.service-row:before,.service-row,.hero-cta .ui-icon,.nav-cta .ui-icon,.contact-link .ui-icon,.manifesto-foot a .ui-icon,.header nav>a:after{transition:none!important}}

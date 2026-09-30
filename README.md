@@ -46,3 +46,5 @@ El titular tiene contraste oscuro sobre crema. La imagen se sustituye por una co
 La última portada utiliza un rótulo verde sobre fondo oscuro y una composición cinética original de anillos con giro continuo y avance vinculado al scroll. Sustituye al mockup y a la fotografía.
 
 El titular incorpora una rotación suave de tres frases, inspirada en el comportamiento observado en Refero Styles, con textos y código propios. Mantiene una altura fija para evitar saltos y ofrece una versión estática con movimiento reducido.
+
+Detalles adicionales: aparición escalonada de secciones al entrar en pantalla, barrido verde en los servicios al pasar el cursor, subrayados de navegación y flechas con desplazamiento suave. El titular y los seis proyectos se conservan.
