@@ -38,3 +38,7 @@ En ordenador, usa las flechas de la galería, las teclas izquierda y derecha cua
 ## Dirección editorial
 
 Tipografía serif, fondos claros, mensajes breves y espacios amplios. La portada presenta la agencia y las páginas web a medida. La fotografía estática aparece debajo del mensaje; se elimina la introducción. Los ajustes visuales están en `editorial.css`.
+
+## Portada animada
+
+El titular tiene contraste oscuro sobre crema. La imagen se sustituye por una composición original en HTML/CSS: una web toma forma al desplazarse y una escultura gráfica flota suavemente. No requiere vídeos externos; respeta movimiento reducido.

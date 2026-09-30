@@ -174,3 +174,16 @@ const onChapterScroll=()=>{
  if(art&&!reduced){const r=art.getBoundingClientRect();art.style.setProperty('--art-shift',`${Math.max(-120,Math.min(120,(innerHeight-r.top)*.12))}px`);}
 };
 addEventListener('scroll',onChapterScroll,{passive:true});onChapterScroll();
+
+// La escena avanza con el scroll sin retener el desplazamiento de la página.
+const motionStory=document.querySelector('.motion-story');
+let motionPending=false;
+function updateMotionStory(){
+ motionPending=false;
+ if(!motionStory||reduced)return;
+ const box=motionStory.getBoundingClientRect();
+ const progress=Math.max(0,Math.min(1,(innerHeight-box.top)/(innerHeight+box.height)));
+ motionStory.style.setProperty('--story',progress.toFixed(4));
+}
+addEventListener('scroll',()=>{if(!motionPending){motionPending=true;requestAnimationFrame(updateMotionStory);}},{passive:true});
+addEventListener('resize',updateMotionStory);updateMotionStory();
