@@ -164,18 +164,6 @@ document.addEventListener('keydown', e => {
  }
 });
 
-// Transición inicial: se omite al tocar el botón y respeta movimiento reducido.
-const intro = document.getElementById('intro');
-let introFinished = false;
-function finishIntro() {
- if (introFinished) return;
- introFinished = true;
- document.body.classList.remove('intro-open');
- intro.classList.add('is-leaving');
- setTimeout(() => {intro.classList.add('is-done');intro.setAttribute('aria-hidden','true');}, reduced ? 0 : 1000);
-}
-document.getElementById('skip-intro').addEventListener('click',finishIntro);
-setTimeout(finishIntro, reduced ? 100 : 1700);
 const chapterCount=document.getElementById('chapter-count');
 const art=document.querySelector('.work-intro-art');
 const chapters=[document.querySelector('.hero'),document.querySelector('#metodo'),document.querySelector('#trabajos'),document.querySelector('#servicios')];

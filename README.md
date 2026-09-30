@@ -4,7 +4,7 @@ Web estática en HTML, CSS y JavaScript para mostrar seis estilos de diseño web
 
 ## Publicar en GitHub y Vercel
 
-1. Descomprime el ZIP y sube el contenido de `portfolio-creativo` a la raíz de un repositorio de GitHub (`index.html`, `styles.css`, `main.js`, `favicon.svg` y la carpeta `assets`).
+1. Descomprime el ZIP y sube el contenido de `portfolio-creativo` a la raíz de un repositorio de GitHub (`index.html`, `styles.css`, `editorial.css`, `main.js`, `favicon.svg` y la carpeta `assets`).
 2. En Vercel, crea un proyecto desde ese repositorio. Selecciona `Other` como Framework Preset, deja Build Command vacío y usa `.` como Output Directory.
 3. Publica el proyecto. Los cambios posteriores en la rama conectada actualizarán la web.
 
@@ -34,3 +34,7 @@ Las miniaturas y la vista ampliada cargan las webs mediante `iframe`. Si una web
 La interfaz utiliza tinta suave `#303431`, crema `#f4f0e7` y verde lima `#d7ff37`. La portada presenta la agencia de marketing y su servicio de páginas web a medida, con un mensaje breve y un botón hacia los seis estilos. Su fotografía se encuentra en `assets/hero-minimal-web.webp` y permanece estática.
 
 En ordenador, usa las flechas de la galería, las teclas izquierda y derecha cuando la sección está visible, o el desplazamiento horizontal. En móvil, desliza las tarjetas. El proyecto que entra en foco crece y toma el verde. Pulsa «Ampliar proyecto» para recorrer su web en una vista grande; «Cerrar» devuelve a la galería.
+
+## Dirección editorial
+
+Tipografía serif, fondos claros, mensajes breves y espacios amplios. La portada presenta la agencia y las páginas web a medida. La fotografía estática aparece debajo del mensaje; se elimina la introducción. Los ajustes visuales están en `editorial.css`.
