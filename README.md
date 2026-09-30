@@ -44,3 +44,5 @@ Tipografía serif, fondos claros, mensajes breves y espacios amplios. La portada
 El titular tiene contraste oscuro sobre crema. La imagen se sustituye por una composición original en HTML/CSS: una web toma forma al desplazarse y una escultura gráfica flota suavemente. No requiere vídeos externos; respeta movimiento reducido.
 
 La última portada utiliza un rótulo verde sobre fondo oscuro y una composición cinética original de anillos con giro continuo y avance vinculado al scroll. Sustituye al mockup y a la fotografía.
+
+El titular incorpora una rotación suave de tres frases, inspirada en el comportamiento observado en Refero Styles, con textos y código propios. Mantiene una altura fija para evitar saltos y ofrece una versión estática con movimiento reducido.

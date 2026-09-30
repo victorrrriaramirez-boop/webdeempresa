@@ -82,3 +82,14 @@ footer{background:var(--cream);color:var(--ink)}
 @keyframes kinetic-turn{from{transform:rotateZ(var(--ring-angle)) rotateY(0deg) rotateX(25deg)}to{transform:rotateZ(var(--ring-angle)) rotateY(360deg) rotateX(25deg)}}
 @media(max-width:700px){.hero .hero-content>.eyebrow{font-size:9px;letter-spacing:.065em;padding:9px 12px;white-space:normal;margin-bottom:28px}.kinetic-stage{height:380px}.kinetic-object{width:260px;left:23%;top:7%}.kinetic-word{font-size:45px;left:7%;bottom:13%}.kinetic-film .motion-caption{font-size:8px;gap:4px}}
 @media(prefers-reduced-motion:reduce){.kinetic-object,.kinetic-halo,.kinetic-word,.kinetic-orbit{transform:none!important}.kinetic-object i{animation:none;transform:rotateZ(var(--ring-angle)) rotateY(55deg) rotateX(25deg)}}
+
+/* Titular que cambia de frase: adaptación editorial del movimiento de Refero. */
+.sr-title{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.rotating-title{display:block;position:relative;height:1.3em;margin-top:.08em;overflow:hidden;color:var(--ink)}
+.title-frames{display:block;position:relative;height:100%}
+.title-frames>span{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;color:var(--ink);-webkit-text-fill-color:var(--ink);animation:title-cycle 18s cubic-bezier(.22,.7,.22,1) infinite;opacity:0;transform:translateY(105%);will-change:transform,opacity}
+.title-frames>span:after{content:"";position:absolute;bottom:.09em;left:calc(50% - 27px);width:54px;height:3px;background:var(--acid)}
+.title-frames>span:nth-child(1){animation-delay:0s}.title-frames>span:nth-child(2){animation-delay:-12s}.title-frames>span:nth-child(3){animation-delay:-6s}
+@keyframes title-cycle{0%{opacity:0;transform:translateY(90%)}5%,28%{opacity:1;transform:translateY(0)}33%,100%{opacity:0;transform:translateY(-105%)}}
+@media(max-width:700px){.rotating-title{height:1.4em}.title-frames>span:after{bottom:.16em;width:40px;left:calc(50% - 20px);height:2px}}
+@media(prefers-reduced-motion:reduce){.title-frames>span{animation:none;will-change:auto}.title-frames>span:first-child{opacity:1;transform:none}.title-frames>span:not(:first-child){display:none}}
