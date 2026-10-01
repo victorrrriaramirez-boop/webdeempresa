@@ -111,3 +111,7 @@ footer{background:var(--cream);color:var(--ink)}
 .header nav>a:not(.nav-cta):after{content:"";position:absolute;left:0;right:0;bottom:3px;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
 .header nav>a:hover:after,.header nav>a:focus-visible:after{transform:scaleX(1)}
 @media(prefers-reduced-motion:reduce){.service-row:before,.service-row,.hero-cta .ui-icon,.nav-cta .ui-icon,.contact-link .ui-icon,.manifesto-foot a .ui-icon,.header nav>a:after{transition:none!important}}
+
+/* Nombres de proyecto en una sola línea cuando el espacio lo permite. */
+.project-copy h3{font-size:clamp(32px,3.5vw,49px);line-height:1.12;letter-spacing:-.025em;overflow-wrap:normal;word-break:normal}
+@media(max-width:700px){.project-copy h3{font-size:clamp(30px,8vw,40px);line-height:1.12}}
