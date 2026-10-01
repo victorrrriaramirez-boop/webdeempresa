@@ -134,3 +134,25 @@ footer{background:var(--cream);color:var(--ink)}
 /* Identidad gráfica vectorial compartida por cabecera y pie. */
 .brand{gap:12px;align-items:center}.brand-logo{display:block;flex:none;width:48px;height:48px;border-radius:12px}.brand-descriptor{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;line-height:1.35}
 @media(max-width:700px){.brand-logo{width:40px;height:40px;border-radius:10px}.brand-descriptor{font-size:9px;letter-spacing:.06em}.brand{gap:9px}}
+
+/* Presentación breve con salida por cortina. */
+.agency-intro[hidden]{display:none!important}
+.agency-intro{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:space-between;padding:32px 5vw;overflow:hidden;transition:transform .85s cubic-bezier(.76,0,.24,1);transform:translateY(0)}
+body.agency-intro-open{overflow:hidden}
+.agency-intro-top{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:10px;letter-spacing:.08em}
+.agency-intro-top button{color:var(--cream);background:none;border:1px solid #f4f0e75c;padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:11px;cursor:pointer;min-height:44px}
+.agency-intro-top button:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+.agency-intro-center{position:relative;text-align:center;margin:auto 0;padding:35px 0}
+.agency-intro-center img{position:relative;width:88px;height:88px;animation:intro-logo-enter .9s cubic-bezier(.22,.7,.22,1) both}
+.agency-intro-center p{position:relative;font-family:Georgia,serif;font-size:clamp(38px,6vw,88px);letter-spacing:-.045em;line-height:1.08;margin:32px 0 0;animation:intro-copy-enter .95s .15s cubic-bezier(.22,.7,.22,1) both}
+.agency-intro-center em{font-style:normal;color:var(--acid)}
+.intro-logo-halo{position:absolute;left:50%;top:50%;width:min(54vw,540px);aspect-ratio:1;border:1px solid #d7ff3738;border-radius:50%;transform:translate(-50%,-50%);animation:intro-halo-enter 1.7s ease both}
+.agency-intro-bottom{display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:9px;letter-spacing:.12em}
+.agency-intro-line{height:2px;background:#f4f0e72a;width:160px;overflow:hidden}.agency-intro-line span{display:block;width:100%;height:100%;background:var(--acid);transform-origin:left;animation:intro-line-fill 2.2s ease both}
+.agency-intro.is-leaving{transform:translateY(-101%);pointer-events:none}
+@keyframes intro-logo-enter{from{opacity:0;transform:scale(.8) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes intro-copy-enter{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+@keyframes intro-halo-enter{from{opacity:0;scale:.7}to{opacity:1;scale:1}}
+@keyframes intro-line-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:700px){.agency-intro{padding:22px 6vw}.agency-intro-top>span{font-size:8px;max-width:150px;line-height:1.6}.agency-intro-center p{font-size:clamp(35px,8.5vw,56px)}.agency-intro-center img{width:72px;height:72px}.intro-logo-halo{width:86vw}.agency-intro-bottom{font-size:8px;letter-spacing:.05em}.agency-intro-line{width:65px}}
+@media(prefers-reduced-motion:reduce){.agency-intro{transition:none}.agency-intro *{animation:none!important}}

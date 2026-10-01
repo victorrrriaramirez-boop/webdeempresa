@@ -200,3 +200,17 @@ if(kineticStage&&!reduced&&matchMedia('(hover:hover) and (pointer:fine)').matche
  });
  kineticStage.addEventListener('pointerleave',()=>{cancelAnimationFrame(pointerFrame);kineticStage.style.setProperty('--pointer-x','0px');kineticStage.style.setProperty('--pointer-y','0px');});
 }
+
+// Intro una vez por sesión; no oculta el contenido si JavaScript está desactivado.
+const agencyIntro=document.getElementById('agency-intro');
+let introSeen=false;
+try{introSeen=sessionStorage.getItem('agency-intro-seen')==='1';}catch{}
+if(agencyIntro&&!reduced&&!introSeen&&!location.hash){
+ agencyIntro.hidden=false;document.body.classList.add('agency-intro-open');
+ let finished=false;
+ const finishAgencyIntro=()=>{if(finished)return;finished=true;agencyIntro.classList.add('is-leaving');document.body.classList.remove('agency-intro-open');try{sessionStorage.setItem('agency-intro-seen','1');}catch{}setTimeout(()=>{agencyIntro.hidden=true;if(agencyIntro.contains(document.activeElement))document.querySelector('.header .brand').focus();},850);};
+ document.getElementById('agency-intro-skip').addEventListener('click',finishAgencyIntro);
+ const introEscape=event=>{if(event.key==='Escape'){finishAgencyIntro();}};
+ document.addEventListener('keydown',introEscape);
+ setTimeout(()=>{finishAgencyIntro();document.removeEventListener('keydown',introEscape);},2200);
+}
