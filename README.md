@@ -20,12 +20,12 @@ También puedes abrir `index.html` en local o ejecutar `python3 -m http.server 8
 
 | N.º | Estilo visible | URL del visor |
 | --- | --- | --- |
-| 01 | Esencia | https://uno-sigma-eight.vercel.app/ |
-| 02 | Perspectiva | https://dos-ivory.vercel.app/ |
-| 03 | Horizonte | https://tres-zeta.vercel.app/ |
-| 04 | Relato | https://cuatro-seven.vercel.app/ |
-| 05 | Presencia | https://prueba-altagracia.vercel.app/ |
-| 06 | Aura | https://ocho-five.vercel.app/ |
+| 01 | NÓRDEN | https://uno-sigma-eight.vercel.app/ |
+| 02 | BRAVA | https://dos-ivory.vercel.app/ |
+| 03 | ÓRBITA | https://tres-zeta.vercel.app/ |
+| 04 | SËLVA | https://cuatro-seven.vercel.app/ |
+| 05 | Casa Andina | https://prueba-altagracia.vercel.app/ |
+| 06 | RITUAL | https://ocho-five.vercel.app/ |
 
 Las miniaturas y la vista ampliada cargan las webs mediante `iframe`. Si una web de origen bloquea su inclusión con `X-Frame-Options` o `Content-Security-Policy: frame-ancestors`, habrá que permitir el dominio del portfolio desde la configuración de esa web para que aparezca dentro del visor.
 
@@ -49,4 +49,4 @@ El titular incorpora una rotación suave de tres frases, inspirada en el comport
 
 Detalles adicionales: aparición escalonada de secciones al entrar en pantalla, barrido verde en los servicios al pasar el cursor, subrayados de navegación y flechas con desplazamiento suave. El titular y los seis proyectos se conservan.
 
-Los seis proyectos se presentan como Esencia, Perspectiva, Horizonte, Relato, Presencia y Aura (cosmética), con títulos sin prefijo y sin puntos finales.
+Los seis proyectos se presentan como NÓRDEN, BRAVA, ÓRBITA, SËLVA, Casa Andina y RITUAL (cosmética), con títulos sin prefijo y sin puntos finales.
