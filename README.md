@@ -52,3 +52,9 @@ Detalles adicionales: aparición escalonada de secciones al entrar en pantalla, 
 Los seis proyectos se presentan como NÓRDEN, BRAVA, ÓRBITA, SËLVA, Casa Andina y RITUAL (cosmética), con títulos sin prefijo y sin puntos finales.
 
 Exploración directa: seis botones permiten seleccionar cualquier proyecto y reflejan el proyecto activo. La composición cinética responde al cursor en ordenador. Los botones principales incorporan un barrido suave; se respetan las preferencias de movimiento reducido.
+
+## Logo y favicon
+
+Símbolo original sin nombre comercial: trazos enlazados y una diagonal ascendente, asociados a conexión y avance. Colores: tinta #303431 y verde #d7ff37. Integrado en cabecera y pie; el favicon utiliza el mismo símbolo. Archivo vectorial editable: `assets/logo-agencia.svg`. No necesita fuentes ni imágenes externas.
+
+Sube todos los archivos de esta carpeta a GitHub, incluido `editorial.css` y `assets`. No es necesario instalar dependencias ni ejecutar una compilación.

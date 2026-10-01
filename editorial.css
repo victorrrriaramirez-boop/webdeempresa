@@ -130,3 +130,7 @@ footer{background:var(--cream);color:var(--ink)}
 @media(hover:hover){.hero-cta:hover:after,.contact-link:hover:after{transform:translateX(0)}.contact-link:hover{color:var(--ink)}}
 @media(max-width:700px){.project-picker{padding:0 6vw 13px;gap:7px}.project-picker button{padding:10px 12px;font-size:11px;gap:7px;flex:1 0 calc(33.33% - 7px);justify-content:center}}
 @media(prefers-reduced-motion:reduce){.kinetic-object{translate:none!important;transition:none}.project-picker button,.hero-cta:after,.contact-link:after{transition:none}}
+
+/* Identidad gráfica vectorial compartida por cabecera y pie. */
+.brand{gap:12px;align-items:center}.brand-logo{display:block;flex:none;width:48px;height:48px;border-radius:12px}.brand-descriptor{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;line-height:1.35}
+@media(max-width:700px){.brand-logo{width:40px;height:40px;border-radius:10px}.brand-descriptor{font-size:9px;letter-spacing:.06em}.brand{gap:9px}}
