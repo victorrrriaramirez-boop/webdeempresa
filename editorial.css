@@ -115,3 +115,18 @@ footer{background:var(--cream);color:var(--ink)}
 /* Nombres de proyecto en una sola línea cuando el espacio lo permite. */
 .project-copy h3{font-size:clamp(32px,3.5vw,49px);line-height:1.12;letter-spacing:-.025em;overflow-wrap:normal;word-break:normal}
 @media(max-width:700px){.project-copy h3{font-size:clamp(30px,8vw,40px);line-height:1.12}}
+
+/* Selector de proyectos: exploración directa con estados claros. */
+.project-picker{display:flex;flex-wrap:wrap;gap:9px;padding:0 4vw 20px}
+.project-picker button{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--cream);color:var(--ink);border-radius:100px;padding:11px 17px;min-height:44px;font-size:12px;cursor:pointer;transition:background .35s ease,border-color .35s ease,transform .35s ease}
+.project-picker button>span{font-size:9px;opacity:.65}
+.project-picker button[aria-pressed="true"]{background:var(--acid);border-color:var(--ink)}
+.project-picker button:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(hover:hover){.project-picker button:hover{transform:translateY(-3px);border-color:var(--ink)}}
+.kinetic-object{translate:var(--pointer-x,0px) var(--pointer-y,0px);transition:translate .55s cubic-bezier(.22,.7,.22,1)}
+.hero-cta,.contact-link{position:relative;overflow:hidden;isolation:isolate}
+.hero-cta:after,.contact-link:after{content:"";position:absolute;inset:0;z-index:-1;background:var(--cream);transform:translateX(-101%);transition:transform .5s cubic-bezier(.22,.7,.22,1)}
+.contact-link:after{background:var(--acid)}
+@media(hover:hover){.hero-cta:hover:after,.contact-link:hover:after{transform:translateX(0)}.contact-link:hover{color:var(--ink)}}
+@media(max-width:700px){.project-picker{padding:0 6vw 13px;gap:7px}.project-picker button{padding:10px 12px;font-size:11px;gap:7px;flex:1 0 calc(33.33% - 7px);justify-content:center}}
+@media(prefers-reduced-motion:reduce){.kinetic-object{translate:none!important;transition:none}.project-picker button,.hero-cta:after,.contact-link:after{transition:none}}

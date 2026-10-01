@@ -50,3 +50,5 @@ El titular incorpora una rotación suave de tres frases, inspirada en el comport
 Detalles adicionales: aparición escalonada de secciones al entrar en pantalla, barrido verde en los servicios al pasar el cursor, subrayados de navegación y flechas con desplazamiento suave. El titular y los seis proyectos se conservan.
 
 Los seis proyectos se presentan como NÓRDEN, BRAVA, ÓRBITA, SËLVA, Casa Andina y RITUAL (cosmética), con títulos sin prefijo y sin puntos finales.
+
+Exploración directa: seis botones permiten seleccionar cualquier proyecto y reflejan el proyecto activo. La composición cinética responde al cursor en ordenador. Los botones principales incorporan un barrido suave; se respetan las preferencias de movimiento reducido.

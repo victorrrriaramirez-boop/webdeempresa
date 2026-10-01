@@ -26,6 +26,7 @@ if (gallery) {
  let navTargetIndex = null;
  const setActive = card => {
   cards.forEach(item => item.classList.toggle('is-selected', item === card));
+  document.querySelectorAll('[data-project-index]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.projectIndex) === cards.indexOf(card))));
   if (card && counter) counter.textContent = String(cards.indexOf(card) + 1).padStart(2, '0');
  };
  cards.forEach(card => {
@@ -71,6 +72,7 @@ if (gallery) {
    if (reduced) requestAnimationFrame(updateGalleryDepth);
   }
  }
+ document.querySelectorAll('[data-project-index]').forEach(button => button.addEventListener('click', () => {const current=navTargetIndex ?? Math.max(0,cards.indexOf(gallery.querySelector('.is-selected')));moveProject(Number(button.dataset.projectIndex)-current);}));
  document.querySelectorAll('[data-gallery-direction]').forEach(button => button.addEventListener('click', () => moveProject(Number(button.dataset.galleryDirection))));
  document.addEventListener('keydown', e => {
   if (innerWidth <= 700 || !['ArrowLeft','ArrowRight'].includes(e.key) || e.altKey || e.ctrlKey || e.metaKey || !document.getElementById('project-modal').hidden || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '')) return;
@@ -187,3 +189,14 @@ function updateMotionStory(){
 }
 addEventListener('scroll',()=>{if(!motionPending){motionPending=true;requestAnimationFrame(updateMotionStory);}},{passive:true});
 addEventListener('resize',updateMotionStory);updateMotionStory();
+
+// El objeto responde al cursor sin alterar el desplazamiento ni el contenido.
+const kineticStage=document.querySelector('.kinetic-stage');
+if(kineticStage&&!reduced&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+ let pointerFrame=0;
+ kineticStage.addEventListener('pointermove',event=>{
+  cancelAnimationFrame(pointerFrame);
+  pointerFrame=requestAnimationFrame(()=>{const box=kineticStage.getBoundingClientRect();kineticStage.style.setProperty('--pointer-x',`${((event.clientX-box.left)/box.width-.5)*24}px`);kineticStage.style.setProperty('--pointer-y',`${((event.clientY-box.top)/box.height-.5)*18}px`);});
+ });
+ kineticStage.addEventListener('pointerleave',()=>{cancelAnimationFrame(pointerFrame);kineticStage.style.setProperty('--pointer-x','0px');kineticStage.style.setProperty('--pointer-y','0px');});
+}
